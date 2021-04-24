@@ -33,3 +33,36 @@ def extrai_valor (carta):
         valor += carta[i]
         i+=1
     return valor
+
+# Função para definir os possíveis movimentos 
+def lista_possiveis_movimentos (baralho, i):
+    # Definindo valor e naipe da carta do índice indicado
+    carta = baralho[i]
+    naipe = extrai_naipe(carta)
+    valor = extrai_valor(carta)
+    movimentos_possiveis = []
+    if i == 0:
+        return movimentos_possiveis
+    # Definindo valor e naipe da carta imediatamente anterior
+    carta_ant = baralho[i-1]
+    naipe_ant = extrai_naipe(carta_ant)
+    valor_ant = extrai_valor(carta_ant)
+    # Definindo valor e naipe da carta 3 posições antes
+    carta_3ant = baralho[i-3]
+    naipe_3ant = extrai_naipe(carta_3ant)
+    valor_3ant = extrai_valor(carta_3ant)
+    if i>0 and i<3:
+        if naipe == naipe_ant:
+            movimentos_possiveis.append(1)
+        if valor == valor_ant:
+            movimentos_possiveis.append(1)
+    if i >= 3: 
+        if naipe == naipe_ant:
+            movimentos_possiveis.append(1)
+        if valor == valor_ant:
+            movimentos_possiveis.append(1)
+        if naipe == naipe_3ant:
+            movimentos_possiveis.append(3)
+        if valor == valor_3ant:
+            movimentos_possiveis.append(3)
+    return movimentos_possiveis
