@@ -18,7 +18,18 @@ def cria_baralho ():
         baralho.append(carta)
     return baralho
 
+# Função para extrair o naipe da carta
 def extrai_naipe (carta):
     n = len(carta)
     naipe = carta[n-1]
     return naipe
+
+# Função para extrair o valor da carta
+def extrai_valor (carta):
+    n = len(carta)
+    valor = ''
+    i = 0
+    while i < n-1:
+        valor += carta[i]
+        i+=1
+    return valor
