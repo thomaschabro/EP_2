@@ -72,3 +72,14 @@ def empilha (baralho, i, f):
     baralho[f] = baralho [i]
     del baralho [i]
     return baralho
+
+# Função para verificar se ainda existem possíveis movimentos no baralho
+def possui_movimentos_possiveis (baralho):
+    verif = []
+    for el in baralho:
+        i = baralho.index(el)
+        x = lista_possiveis_movimentos(baralho, i)
+        if x != []:
+            return True
+    return False
+
