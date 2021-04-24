@@ -66,3 +66,9 @@ def lista_possiveis_movimentos (baralho, i):
         if valor == valor_3ant:
             movimentos_possiveis.append(3)
     return movimentos_possiveis
+
+# Função para empilhar as cartas
+def empilha (baralho, i, f):
+    baralho[f] = baralho [i]
+    del baralho [i]
+    return baralho
