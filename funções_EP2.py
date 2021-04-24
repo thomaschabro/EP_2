@@ -17,3 +17,8 @@ def cria_baralho ():
         carta = 'A' + i
         baralho.append(carta)
     return baralho
+
+def extrai_naipe (carta):
+    n = len(carta)
+    naipe = carta[n-1]
+    return naipe
