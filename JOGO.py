@@ -73,11 +73,11 @@ while cond:
         if naipe == '♠':
             print('Você pode empilhar {0} \033[0;0m' .format('\033[96m' + carta) + 'sobre as seguintes cartas')
         if naipe == '♥':
-            print('Você pode empilhar {0} sobre as seguintes cartas\033[0;0m' .format('\033[91m' + carta))
+            print('Você pode empilhar {0} \033[0;0m' .format('\033[91m' + carta) + 'sobre as seguintes cartas')
         if naipe == '♦':
-            print('Você pode empilhar {0} sobre as seguintes cartas\033[0;0m' .format('\033[93m' + carta))
+            print('Você pode empilhar {0} \033[0;0m' .format('\033[93m' + carta) + 'sobre as seguintes cartas')
         if naipe == '♣':
-            print('Você pode empilhar {0} sobre as seguintes cartas\033[0;0m' .format('\033[92m' + carta))
+            print('Você pode empilhar {0} \033[0;0m' .format('\033[92m' + carta) + 'sobre as seguintes cartas')
         naipe_1 = extrai_naipe(baralho[indice-1])
         if naipe_1 == '♠':
             print(' {0}. {1}\033[0;0m' .format(1, '\033[96m' + baralho[indice-1])) 
@@ -86,7 +86,7 @@ while cond:
         if naipe_1 == '♦':
             print(' {0}. {1}\033[0;0m' .format(1, '\033[93m' + baralho[indice-1]))
         if naipe_1 == '♣':
-            print(' {0}. {1}\033[0;0m' .format(1, '\033[962m' + baralho[indice-1]))
+            print(' {0}. {1}\033[0;0m' .format(1, '\033[92m' + baralho[indice-1]))
         naipe_3 = extrai_naipe(baralho[indice-3])
         if naipe_3 == '♠':
             print(' {0}. {1}\033[0;0m' .format(2, '\033[96m' + baralho[indice-3])) 
@@ -95,14 +95,17 @@ while cond:
         if naipe_3 == '♦':
             print(' {0}. {1}\033[0;0m' .format(2, '\033[93m' + baralho[indice-3]))
         if naipe_3 == '♣':
-            print(' {0}. {1}\033[0;0m' .format(2, '\033[962m' + baralho[indice-3]))
-        jogada = input ('Digite o número escolhido')
+            print(' {0}. {1}\033[0;0m' .format(2, '\033[92m' + baralho[indice-3]))
+        jogada = int(input ('Digite o número escolhido '))
         if jogada == 1:
-            baralho = empilha(baralho, i, i-1)
+            baralho = empilha(baralho, indice, indice-1)
         if jogada == 2:
-            baralho = empilha(baralho, i, i-3)
+            baralho = empilha(baralho, indice, indice-3)
     if not possíveis_movimentos:
         print ('Não é possível mexer esta carta')
-    
+if len(baralho) > 1:
+    print ('Parabéns, você ganhou!')
+if len(baralho) != 1:
+    print ('Infelizmente, você não deu sorte dessa vez. Tente outra vez!')   
             
 
