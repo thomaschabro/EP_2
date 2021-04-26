@@ -2,12 +2,6 @@
 from funções_EP2 import *
 import random
 
-# Criando Baralho
-baralho = cria_baralho()
-
-# Embaralhando o baralho
-random.shuffle(baralho)
-
 # Inicialização do jogo, apresentando as regras
 class color:
    PURPLE = '\033[95m'
@@ -42,8 +36,13 @@ print ('Desde que alguma das condições acima seja satisfeita, qualquer carta p
 # Criando o funcionamento do jogo
 Jogar = True
 while Jogar:
-    cond = possui_movimentos_possiveis(baralho)
-    while cond:
+    # Criando Baralho
+    baralho = cria_baralho()
+    # Embaralhando o baralho
+    random.shuffle(baralho) 
+    # Iniciando o jogo
+    condição = True
+    while condição:
         # Apresentando ao jogador a situação do jogo
         i = 1
         print ('')
@@ -111,13 +110,14 @@ while Jogar:
                 baralho = empilha(baralho, indice, indice-3)
         if not possíveis_movimentos:
             print ('Não é possível mexer esta carta')
-    if len(baralho) > 1:
-        print ('Parabéns, você ganhou!')
-    if len(baralho) != 1:
-        print ('Infelizmente, você não deu sorte dessa vez. Tente outra vez!')   
-    repetição = input ('Você deseja jogar novamente?')
-    if repetição == 'sim':
-        Jogar = True
+        cond = possui_movimentos_possiveis(baralho)
+        if cond == False:
+            if len(baralho) > 1:
+                print ('Parabéns, você ganhou!')
+            if len(baralho) != 1:
+                print ('Infelizmente, você não deu sorte dessa vez. Tente outra vez!')
+            condição = False   
+    repetição = input ('Você deseja jogar novamente? ')
     if repetição == 'não':
         Jogar = False
 
