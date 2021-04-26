@@ -46,7 +46,7 @@ while cond:
     i = 1
     print ('')
     print ('===========================')
-    print ('Situação Atual do baralho')
+    print ('Situação Atual do seu baralho')
     # Aplicando cor às cartas do baralho
     for el in baralho:
         if extrai_naipe(el) == '♠':
@@ -97,6 +97,8 @@ while cond:
         if naipe_3 == '♣':
             print(' {0}. {1}\033[0;0m' .format(2, '\033[92m' + baralho[indice-3]))
         jogada = int(input ('Digite o número escolhido '))
+        if jogada != 1 and jogada != 2:
+            print ('Número inválido. Escolha entre a opção 1 e a opção 2')
         if jogada == 1:
             baralho = empilha(baralho, indice, indice-1)
         if jogada == 2:
