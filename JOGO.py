@@ -8,16 +8,55 @@ baralho = cria_baralho()
 # Embaralhando o baralho
 random.shuffle(baralho)
 
+# Inicialização do jogo, apresentando as regras
+class color:
+   PURPLE = '\033[95m'
+   CYAN = '\033[96m'
+   DARKCYAN = '\033[36m'
+   BLUE = '\033[94m'
+   GREEN = '\033[92m'
+   YELLOW = '\033[93m'
+   RED = '\033[91m'
+   BOLD = '\033[1m'
+   UNDERLINE = '\033[4m'
+   END = '\033[0m'
+print ('')
+print ('==========================================================')
+print (color.BOLD + 'Bem vindo ao Paciência Acordeão!' + color.END)
+print ('Regras:')
+print ('O seu objetivo neste jogo é empilhar cartas, até sobrar apenas uma única pilha')
+print ('')
+print ('')
+print ("Existem apenas dois movimentos possíveis:")
+print ('')
+print (' 1. Empilhar uma carta sobre a carta imediatamente anterior;')
+print (" 2. Empilhar uma carta sobre a terceira carta anterior.") 
+print ('')
+print ('Para que um movimento possa ser realizado basta que uma das duas condições abaixo seja atendida:')
+print ('')
+print (' 1. As duas cartas possuem o mesmo valor ou ')
+print (' 2. As duas cartas possuem o mesmo naipe. ')
+print ('')
+print ('Desde que alguma das condições acima seja satisfeita, qualquer carta pode ser movimentada.')
+
 # Criando o funcionamento do jogo
 cond = possui_movimentos_possiveis(baralho)
 while cond:
     # Apresentando ao jogador a situação do jogo
     i = 1
     print ('')
-    print ('Situação Atual do baralho')
     print ('===========================')
+    print ('Situação Atual do baralho')
+    # Aplicando cor às cartas do baralho
     for el in baralho:
-        print (' {0}. {1}' .format(i, el))
+        if extrai_naipe(el) == '♠':
+            print (' {0}. {1} \033[0;0m'.format(i,'\033[96m' + el)) 
+        if extrai_naipe(el) == '♥':
+            print (' {0}. {1} \033[0;0m'.format(i,'\033[91m' + el)) 
+        if extrai_naipe(el) == '♦':
+            print (' {0}. {1} \033[0;0m'.format(i,'\033[93m' + el)) 
+        if extrai_naipe(el) == '♣':
+            print (' {0}. {1} \033[0;0m'.format(i,'\033[92m' + el)) 
         i+=1
     # Realizando a jogada da vez
     indice = int(input('Digite a posição da carta que deseja mover ({0} - {1}) ' .format(1, len(baralho))))
@@ -30,10 +69,34 @@ while cond:
         if possíveis_movimentos[0] == 3:
             baralho = empilha(baralho, indice, indice-3)
     if len(possíveis_movimentos) == 2:
-        print('Você pode empilhar {0} sobre as seguintes cartas' .format(carta))
-        print(' {0}. {1}' .format(1, baralho[indice-1]))
-        print(' {0}. {1}' .format(2, baralho[indice-3]))
-        jogada = input ('Digite o número da carta na qual deseja empilhar o {0} ' .format(carta))
+        naipe = extrai_naipe(carta)
+        if naipe == '♠':
+            print('Você pode empilhar {0} \033[0;0m' .format('\033[96m' + carta) + 'sobre as seguintes cartas')
+        if naipe == '♥':
+            print('Você pode empilhar {0} sobre as seguintes cartas\033[0;0m' .format('\033[91m' + carta))
+        if naipe == '♦':
+            print('Você pode empilhar {0} sobre as seguintes cartas\033[0;0m' .format('\033[93m' + carta))
+        if naipe == '♣':
+            print('Você pode empilhar {0} sobre as seguintes cartas\033[0;0m' .format('\033[92m' + carta))
+        naipe_1 = extrai_naipe(baralho[indice-1])
+        if naipe_1 == '♠':
+            print(' {0}. {1}\033[0;0m' .format(1, '\033[96m' + baralho[indice-1])) 
+        if naipe_1 == '♥':
+            print(' {0}. {1}\033[0;0m' .format(1, '\033[91m' + baralho[indice-1]))
+        if naipe_1 == '♦':
+            print(' {0}. {1}\033[0;0m' .format(1, '\033[93m' + baralho[indice-1]))
+        if naipe_1 == '♣':
+            print(' {0}. {1}\033[0;0m' .format(1, '\033[962m' + baralho[indice-1]))
+        naipe_3 = extrai_naipe(baralho[indice-3])
+        if naipe_3 == '♠':
+            print(' {0}. {1}\033[0;0m' .format(2, '\033[96m' + baralho[indice-3])) 
+        if naipe_3 == '♥':
+            print(' {0}. {1}\033[0;0m' .format(2, '\033[91m' + baralho[indice-3]))
+        if naipe_3 == '♦':
+            print(' {0}. {1}\033[0;0m' .format(2, '\033[93m' + baralho[indice-3]))
+        if naipe_3 == '♣':
+            print(' {0}. {1}\033[0;0m' .format(2, '\033[962m' + baralho[indice-3]))
+        jogada = input ('Digite o número escolhido')
         if jogada == 1:
             baralho = empilha(baralho, i, i-1)
         if jogada == 2:
